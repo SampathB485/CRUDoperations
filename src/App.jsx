@@ -4,49 +4,30 @@ import './App.css'
 
 function App() {
   let [cname, Setcname] = useState('');
-  let [cemail, Setcemail] = useState('');
-  let [indDetail, SetIndDetail] = useState({"name":'', "email":''})
   let [dbData, SetdbData] = useState([]);
 
   useEffect(() => {
-    fetchDBData();
+    fetchDBData(); // the functionality of this is to get the data from the json and give it to dbData hook as list of objects so that it uses the map function and renders the data...on the output
   }, [dbData])
 
   async function fetchDBData() {
     let resp = await axios.get('http://localhost:4001/Candidatenames');
-    // console.log(resp.data); // just to check the data
     SetdbData(resp.data);
   }
-  let HandleNameEvent = (nameevent) => {
-    Setcname(nameevent.target.value);
-    // SetIndDetail({"name":nameevent.target.value});
-  }
-  let HandleEmailEvent = (emailevent)=> {
-    Setcemail(emailevent.target.value);
-    // SetIndDetail({"email":emailevent.target.value});
 
-  }
+  let HandleNameEvent = (nameevent) => {Setcname(nameevent.target.value);}
 
   async function EnterData() {
 
-
-    if(cname == '' || cemail == ''){
+    if(cname == ''){
       alert("Please enter all the feilds");
-    }else{
-      
-      
-      console.log("this is caname", cname)
-      console.log("this is cmail", cemail)
-      console.log('entire daata   .. :- ', indDetail )
-
-      // await axios.post('http://localhost:4001/Candidatenames', { indDetail });
+    }
+    else{
+      let name = cname;
+      await axios.post('http://localhost:4001/Candidatenames', { name});
       Setcname('');
-      Setcemail('');
 
     }
-    
-
-
   }
   let urlHalf = "http://localhost:4001/Candidatenames/"
 
@@ -58,12 +39,10 @@ function App() {
     await axios.delete(url)
   }
 
-  // async function ModifyInd(propVal) {
-
-  //   let url = urlHalf+propVal;
-  //   let modifiedObj = {}
-  //   await axios.put(url,modifiedObj)
-  // }
+  async function ModifyInd(modifiedpropVal) {
+    let url = urlHalf+ modifiedpropVal;
+    await axios.put(url, {"name": "maarindi ggaa"})
+  }
 
 
 
@@ -72,7 +51,6 @@ function App() {
       <div className='LoginFormStyling mt-5'>
         <div className='d-flex flex-column align-items-center'>
           <input type="text" placeholder='Enter your name' value={cname} onChange={HandleNameEvent} className='form-control mb-3 HeightAndWidth' />
-          <input type="email" placeholder='Enter your email' value={cemail} onChange={HandleEmailEvent}  className='form-control mb-3 HeightAndWidth' />
           <div className='butt'>
             <button className='btn btn-success'>Show</button>
             <button className='btn btn-primary' onClick={EnterData}>Enter</button>
