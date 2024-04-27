@@ -4,6 +4,8 @@ import './App.css'
 
 function App() {
   let [cname, Setcname] = useState('');
+  let [cemail, Setcemail] = useState('');
+  let [indDetail, SetIndDetail] = useState({"name":'', "email":''})
   let [dbData, SetdbData] = useState([]);
 
   useEffect(() => {
@@ -15,15 +17,34 @@ function App() {
     // console.log(resp.data); // just to check the data
     SetdbData(resp.data);
   }
-
-  let HandleEvent = (event) => {
-    Setcname(event.target.value);
+  let HandleNameEvent = (nameevent) => {
+    Setcname(nameevent.target.value);
+    // SetIndDetail({"name":nameevent.target.value});
   }
-  async function EnterData() {
-    let name = cname;
-    await axios.post('http://localhost:4001/Candidatenames', { name })
+  let HandleEmailEvent = (emailevent)=> {
+    Setcemail(emailevent.target.value);
+    // SetIndDetail({"email":emailevent.target.value});
 
-    Setcname('');
+  }
+
+  async function EnterData() {
+
+
+    if(cname == '' || cemail == ''){
+      alert("Please enter all the feilds");
+    }else{
+      
+      
+      console.log("this is caname", cname)
+      console.log("this is cmail", cemail)
+      console.log('entire daata   .. :- ', indDetail )
+
+      // await axios.post('http://localhost:4001/Candidatenames', { indDetail });
+      Setcname('');
+      Setcemail('');
+
+    }
+    
 
 
   }
@@ -50,8 +71,8 @@ function App() {
     <>
       <div className='LoginFormStyling mt-5'>
         <div className='d-flex flex-column align-items-center'>
-          <input type="text" placeholder='Enter your name' value={cname} onChange={HandleEvent} className='form-control mb-3 HeightAndWidth' />
-          <input type="email" placeholder='Enter your email' className='form-control mb-3 HeightAndWidth' />
+          <input type="text" placeholder='Enter your name' value={cname} onChange={HandleNameEvent} className='form-control mb-3 HeightAndWidth' />
+          <input type="email" placeholder='Enter your email' value={cemail} onChange={HandleEmailEvent}  className='form-control mb-3 HeightAndWidth' />
           <div className='butt'>
             <button className='btn btn-success'>Show</button>
             <button className='btn btn-primary' onClick={EnterData}>Enter</button>
@@ -59,9 +80,7 @@ function App() {
           
         </div>
       </div>
-
-
-
+    
       {
         dbData.map(
           (d, i) => {
