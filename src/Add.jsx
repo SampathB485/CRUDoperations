@@ -18,10 +18,15 @@ function Add(){
     }
 
     async function SaveDataFunction(){
-        await axios.post('http://localhost:4000/Candidatenames', {Name, Email, Phone})
-        SetName('')
-        SetEmail('')
-        SetPhone('')
+        if (Name == '' || Email == '' || Phone == ''){
+            alert("Enter all the feilds")
+        } 
+        else{
+            await axios.post('http://localhost:4000/Candidatenames', {Name, Email, Phone})
+            SetName('')
+            SetEmail('')
+            SetPhone('')
+        }
     }
 
     return(

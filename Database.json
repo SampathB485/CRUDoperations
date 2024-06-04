@@ -1,3 +1,21 @@
 {
-  "Candidatenames": []
+  "Candidatenames": [
+    {
+      "id": "f48f",
+      "Name": "",
+      "Email": ""
+    },
+    {
+      "id": "7859",
+      "Name": "",
+      "Email": "",
+      "Phone": ""
+    },
+    {
+      "id": "7a97",
+      "Name": "a",
+      "Email": "a",
+      "Phone": "3"
+    }
+  ]
 }
