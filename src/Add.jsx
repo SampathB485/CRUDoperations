@@ -18,8 +18,18 @@ function Add(){
     }
 
     async function SaveDataFunction(){
-        if (Name == '' || Email == '' || Phone == ''){
-            alert("Enter all the feilds")
+        let regexName = "/^[A-ZÀ-ÖØ-züáéíóúñÄËÏÖÜäëïöü\s\-']{2,30}$/";
+        let regexEmail = "/^[^\s@]+@[^\s@]+\.[^\s@]+$/";
+        let regexPhone = "/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/";
+
+        let isName = regexName.test(Name)
+        let isEmail = regexEmail.test(Email)
+        let isPhone = regexPhone.test(Phone)
+
+        if (Name == "quit"){
+            console.log(isName)
+            console.log(isEmail)
+            console.log(isPhone)
         } 
         else{
             await axios.post('http://localhost:4000/Candidatenames', {Name, Email, Phone})
