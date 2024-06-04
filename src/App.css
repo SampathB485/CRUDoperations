@@ -23,20 +23,4 @@
   }
 }
 
-/* styling for login form */
-.LoginFormStyling{
-  padding: 40px;
-  border: 0.5px solid grey;
-  border-radius: 30px;
 
-}
-
-.HeightAndWidth{
-  height: 35px; width: 300px;
-}
-
-
-.butt{
-  width: 100%;
-  display: flex; justify-content: space-around;
-}
