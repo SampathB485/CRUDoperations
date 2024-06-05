@@ -1,5 +1,4 @@
-import { useState, useEffect, Suspense, lazy } from 'react'
-import axios from 'axios'
+import { Suspense, lazy } from 'react'
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 let Lazyhome = lazy(()=>import ('./Home'));

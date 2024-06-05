@@ -37,7 +37,7 @@ function Add(){
             Name <input type="text" placeholder="Enter the name" value={Name} onChange={HandleEventName}/> <br />
             Email <input type="email" placeholder="Enter the Email" value = {Email} onChange={HandleEventEmail}/> <br />
             Phone <input type="number" placeholder="Enter the number" value={Phone} onChange={HandleEventNum}/> <br />
-            <button><Link to='/'>Back</Link></button> <button onClick={()=>SaveDataFunction()}>Save</button>
+            <button className="btn btn-secondary"><Link to='/'>Back</Link></button> <button className="btn btn-success" onClick={()=>SaveDataFunction()}>Save</button>
         </>
     )
 }

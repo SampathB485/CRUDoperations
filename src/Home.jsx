@@ -26,7 +26,7 @@ function Home(){
         <>
         <div>
             <button className="btn btn-primary"><Link to='/Add'>Add Item +</Link></button>
-            <table>
+            <table className="table table-hover">
                 <thead>
                     <tr><th>Name</th>
                     <th>Email</th> 
@@ -40,7 +40,7 @@ function Home(){
                                 <td>{d.Name}</td>
                                 <td>{d.Email}</td>
                                 <td>{d.Phone}</td>
-                                <td> <button onClick={()=>{RedirectToModify(d.id)}}>Edit</button> <button onClick={()=>DeleteFunction(d.id)}>Delete</button></td>
+                                <td> <button className="btn btn-warning" onClick={()=>{RedirectToModify(d.id)}}>Edit</button> <button className="btn btn-danger" onClick={()=>DeleteFunction(d.id)}>Delete</button></td>
                             </tr>
                         })
                     }
