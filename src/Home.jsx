@@ -7,6 +7,7 @@ function Home(){
     useEffect(()=>{
         LoadData()
     }, [dataArray])
+    const navigate = useNavigate(); 
 
     async function LoadData(){
         let obj = await axios.get('http://localhost:4000/Candidatenames');
@@ -15,6 +16,10 @@ function Home(){
 
     async function DeleteFunction(deleteData){
         await axios.delete('http://localhost:4000/Candidatenames/'+deleteData)
+    }
+
+    function RedirectToModify(id){
+        navigate('/Modify/'+id)
     }
 
     return(
@@ -32,10 +37,10 @@ function Home(){
                     {
                         dataArray.map((d, i)=>{
                             return <tr key = {i}>
-                                <td>{d.name}</td>
-                                <td>{d.email}</td>
-                                <td>{d.phone}</td>
-                                <td> <button> <Link to='/Modify'>Edit</Link></button> <button onClick={()=>DeleteFunction(d.id)}>Delete</button></td>
+                                <td>{d.Name}</td>
+                                <td>{d.Email}</td>
+                                <td>{d.Phone}</td>
+                                <td> <button onClick={()=>{RedirectToModify(d.id)}}>Edit</button> <button onClick={()=>DeleteFunction(d.id)}>Delete</button></td>
                             </tr>
                         })
                     }

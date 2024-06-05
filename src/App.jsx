@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path='/' element = {<Suspense><Lazyhome/></Suspense>}></Route>
           <Route path='/Add' element = {<Suspense><LazyAdd/></Suspense>}></Route>
-          <Route path='/Modify' element = {<Suspense><LazyModify/></Suspense>}></Route>
+          <Route path='/Modify/:id' element = {<Suspense><LazyModify/></Suspense>}></Route>
           
         </Routes>
       </BrowserRouter>
